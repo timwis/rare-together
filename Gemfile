@@ -72,3 +72,5 @@ end
 gem "devise", "~> 4.9"
 
 gem "simple_form", "~> 5.3"
+
+gem "faker", "~> 3.2"

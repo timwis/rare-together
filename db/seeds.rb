@@ -7,7 +7,30 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+require "faker"
 
-["Headache", "Blurred vision"].each do |symptom_name|
+SYMPTOMS = [
+  "Coughing",
+  "Shortness of breath",
+  "Chest tightness",
+  "Abdominal pain",
+  "Diarrhoea",
+  "Constipation"
+]
+
+SYMPTOMS.each do |symptom_name|
   Symptom.find_or_create_by!(name: symptom_name)
+end
+
+all_symptoms = Symptom.all
+user = User.first!
+date_range = 1.month.ago.to_date..Date.today
+scattered_dates = date_range.reject { |_date| rand < 0.45 }
+
+Entry.destroy_all
+
+scattered_dates.each do |date|
+  symptom = all_symptoms.sample
+  Entry.create(user: user, occurred_at: date, body: Faker::Lorem.paragraph,
+    symptoms: [symptom])
 end
