@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  occurred_at: 2024-02-25 10:32:48
+  symptoms: one
+  body: MyText
+
+two:
+  user: two
+  occurred_at: 2024-02-25 10:32:48
+  symptoms: two
+  body: MyText

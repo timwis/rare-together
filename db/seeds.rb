@@ -7,3 +7,7 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+["Headache", "Blurred vision"].each do |symptom_name|
+  Symptom.find_or_create_by!(name: symptom_name)
+end

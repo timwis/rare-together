@@ -10,7 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_25_100812) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_25_103248) do
+  create_table "entries", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.datetime "occurred_at"
+    t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_entries_on_user_id"
+  end
+
+  create_table "entries_symptoms", primary_key: ["entry_id", "symptom_id"], force: :cascade do |t|
+    t.integer "entry_id"
+    t.integer "symptom_id"
+    t.index ["entry_id"], name: "index_entries_symptoms_on_entry_id"
+    t.index ["symptom_id"], name: "index_entries_symptoms_on_symptom_id"
+  end
+
+  create_table "symptoms", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -23,4 +45,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_25_100812) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "entries", "users"
 end
