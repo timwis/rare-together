@@ -1,14 +1,12 @@
 <p style="color: green"><%= notice %></p>
 
 <h1>Entries</h1>
+<%= link_to "New entry", new_entry_path %>
 
 <div id="entries">
   <% @entries.each do |entry| %>
+    <hr>
     <%= render entry %>
-    <p>
-      <%= link_to "Show this entry", entry %>
-    </p>
   <% end %>
 </div>
 
-<%= link_to "New entry", new_entry_path %>
